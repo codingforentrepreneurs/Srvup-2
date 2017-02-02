@@ -16,6 +16,9 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+from videos.views import VideoListView
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^videos/$', VideoListView.as_view(), name='video-list'),
 ]
