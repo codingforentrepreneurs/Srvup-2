@@ -1,12 +1,18 @@
-<h1>Hi</h1>
+{% extends 'base.html' %}
+
+{% block title %}Videos | {{ block.super }}{% endblock title %}
 
 
-{{ object_list }}
+{% block content %}
+    <h1>Hi</h1>
 
-{{ random_number }}
+        {{ object_list }}
 
-<ul>
-{% for item in object_list %}
-    <li>{{ item.title }}</li>
-{% endfor %}
-</ul>
+        {{ random_number }}
+
+        <ul>
+        {% for item in object_list %}
+            <li>{{ item.title }}</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}
