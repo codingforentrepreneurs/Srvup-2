@@ -18,8 +18,6 @@ from .models import Course
 class CourseCreateView(StaffMemberRequiredMixin, CreateView):
     model = Course
     form_class = CourseForm
-    success_url = "/success/"
-
     def form_valid(self, form):
         obj = form.save(commit=False)
         obj.user = self.request.user
