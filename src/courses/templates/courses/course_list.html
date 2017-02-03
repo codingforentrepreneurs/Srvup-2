@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Courses | {{ block.super }}{% endblock title %}
+
+
+{% block content %}
+    <h1>Hi</h1>
+
+    {% if request.GET.q %}
+        <p>You searched for <b>{{ request.GET.q }}</b></p>
+    {% endif %}
+        <ul>
+        {% for item in object_list %}
+            <li><a href='{{ item.get_absolute_url }}'>{{ item.title }}</a></li>
+        
+            {% empty %}
+            <li>No item found</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}
