@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Videos | {{ block.super }}{% endblock title %}
+
+
+{% block content %}
+    <h1>Hi</h1>
+
+    {{ object.title }}
+    {{ object.embed_code|safe }}
+    {{ object.updated }}
+    {{ object.id }}
+{% endblock content %}
