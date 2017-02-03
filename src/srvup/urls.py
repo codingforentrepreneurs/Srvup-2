@@ -17,12 +17,13 @@ from django.conf.urls import url
 from django.contrib import admin
 
 from .views import home, HomeView
-from videos.views import VideoListView, VideoDetailView
+from videos.views import VideoListView, VideoDetailView, VideoCreateView
 
 urlpatterns = [
     url(r'^$', HomeView.as_view(), name='home'),
     url(r'^admin/', admin.site.urls),
     url(r'^videos/$', VideoListView.as_view(), name='video-list'),
-    url(r'^videos/(?P<pk>\d+)/$', VideoDetailView.as_view(), name='video-detail'),
+    url(r'^videos/create/$', VideoCreateView.as_view(), name='video-create'),
+    # url(r'^videos/(?P<pk>\d+)/$', VideoDetailView.as_view(), name='video-detail'),
     url(r'^videos/(?P<slug>[\w-]+)/$', VideoDetailView.as_view(), name='video-detail-slug'),
 ]
