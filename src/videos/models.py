@@ -4,11 +4,13 @@ from django.db.models.signals import pre_save, post_save
 from django.utils.text import slugify
 # Create your models here.
 class Video(models.Model):
-    title       = models.CharField(max_length=120)
-    slug        = models.SlugField(blank=True)
-    embed_code  = models.TextField()
-    updated     = models.DateTimeField(auto_now=True)
-    timestamp   = models.DateTimeField(auto_now_add=True)
+    title           = models.CharField(max_length=120)
+    slug            = models.SlugField(blank=True)
+    embed_code      = models.TextField()
+    free            = models.BooleanField(default=True)
+    member_required = models.BooleanField(default=False)
+    updated         = models.DateTimeField(auto_now=True)
+    timestamp       = models.DateTimeField(auto_now_add=True)
 
     def __str__(self): 
         return self.title
