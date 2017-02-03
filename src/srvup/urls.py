@@ -17,7 +17,13 @@ from django.conf.urls import url
 from django.contrib import admin
 
 from .views import home, HomeView
-from videos.views import VideoListView, VideoDetailView, VideoCreateView
+from videos.views import (
+    VideoListView, 
+    VideoDetailView, 
+    VideoCreateView, 
+    VideoUpdateView,
+    VideoDeleteView
+    )
 
 urlpatterns = [
     url(r'^$', HomeView.as_view(), name='home'),
@@ -26,4 +32,7 @@ urlpatterns = [
     url(r'^videos/create/$', VideoCreateView.as_view(), name='video-create'),
     # url(r'^videos/(?P<pk>\d+)/$', VideoDetailView.as_view(), name='video-detail'),
     url(r'^videos/(?P<slug>[\w-]+)/$', VideoDetailView.as_view(), name='video-detail-slug'),
+    url(r'^videos/(?P<slug>[\w-]+)/edit/$', VideoUpdateView.as_view(), name='video-update'),
+    url(r'^videos/(?P<slug>[\w-]+)/delete/$', VideoDeleteView.as_view(), name='video-delete'),
+
 ]
