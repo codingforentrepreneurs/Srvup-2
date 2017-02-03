@@ -11,13 +11,22 @@ from django.views.generic import (
 
 #from .forms import VideoForm
 from videos.mixins import MemberRequiredMixin, StaffMemberRequiredMixin
+from .forms import CourseForm
 from .models import Course
 
 
-# class VideoCreateView(StaffMemberRequiredMixin, CreateView):
-#     model = Video
-#     form_class = VideoForm
-    #success_url = "/success/"
+class CourseCreateView(StaffMemberRequiredMixin, CreateView):
+    model = Course
+    form_class = CourseForm
+    success_url = "/success/"
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.user = self.request.user
+        obj.save()
+        return super(CourseCreateView, self).form_valid(form)
+
+
 
 
 class CourseDetailView(MemberRequiredMixin, DetailView):
@@ -40,9 +49,17 @@ class CourseListView(ListView):
     #     return context
 
 
-# class VideoUpdateView(StaffMemberRequiredMixin, UpdateView):
-#     queryset = Video.objects.all()
-#     form_class = VideoForm
+class CourseUpdateView(StaffMemberRequiredMixin, UpdateView):
+    queryset = Course.objects.all()
+    form_class = CourseForm
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        if not self.request.user.is_staff:
+            obj.user = self.request.user
+        obj.save()
+        return super(CourseUpdateView, self).form_valid(form)
+
 
 
 class CourseDeleteView(StaffMemberRequiredMixin, DeleteView):
