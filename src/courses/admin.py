@@ -6,6 +6,8 @@ from .models import Course, Lecture
 
 class LectureInline(admin.TabularInline):
     model = Lecture
+    prepopulated_fields = {"slug": ("title",)}
+    extra = 1
 
 class CourseAdmin(admin.ModelAdmin):
     inlines = [LectureInline]

@@ -41,6 +41,9 @@ class Lecture(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        unique_together = (('slug', 'course'),)
+
     def get_absolute_url(self):
         return reverse("courses:detail", kwargs={"slug": self.course.slug})
 
