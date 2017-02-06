@@ -5,6 +5,8 @@ from django.core.urlresolvers import reverse
 from django.utils.text import slugify
 # Create your models here.
 
+from videos.models import Video
+
 from .utils import create_slug
 
 class Course(models.Model):
@@ -24,8 +26,39 @@ class Course(models.Model):
 
 
 
+
+
+
+class Lecture(models.Model):
+    course          = models.ForeignKey(Course, on_delete=models.SET_NULL, null=True)
+    video           = models.ForeignKey(Video, on_delete=models.SET_NULL, null=True)
+    title           = models.CharField(max_length=120)
+    slug            = models.SlugField(blank=True) # unique = False
+    description     = models.TextField()
+    updated         = models.DateTimeField(auto_now=True)
+    timestamp       = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse("courses:detail", kwargs={"slug": self.course.slug})
+
+
+
+
+
+
 def pre_save_video_receiver(sender, instance, *args, **kwargs):
     if not instance.slug:
         instance.slug = create_slug(instance)
 
 pre_save.connect(pre_save_video_receiver, sender=Course)
+# pre_save.connect(pre_save_video_receiver, sender=Lecture)
+
+
+
+
+
+
+
