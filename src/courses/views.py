@@ -1,6 +1,7 @@
 import random
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404
+from django.http import Http404
 from django.views.generic import (
         CreateView,
         DetailView,
@@ -18,6 +19,7 @@ from .models import Course
 class CourseCreateView(StaffMemberRequiredMixin, CreateView):
     model = Course
     form_class = CourseForm
+    
     def form_valid(self, form):
         obj = form.save(commit=False)
         obj.user = self.request.user
@@ -29,6 +31,14 @@ class CourseCreateView(StaffMemberRequiredMixin, CreateView):
 
 class CourseDetailView(MemberRequiredMixin, DetailView):
     queryset = Course.objects.all()
+
+    def get_object(self):
+        slug = self.kwargs.get("slug")
+        # obj = Course.objects.get(slug=slug) # 1 or 0; > 1 MultipleObjectsReturned
+        obj = Course.objects.filter(slug=slug) # []
+        if obj.exists():
+            return obj.first() # first instance of list
+        raise Http404
 
 
 class CourseListView(ListView):
