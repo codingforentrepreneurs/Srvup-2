@@ -34,20 +34,10 @@ class CourseDetailView(MemberRequiredMixin, DetailView):
 
     def get_object(self):
         slug = self.kwargs.get("slug")
-        # obj = Course.objects.get(slug=slug) # 1 or 0; > 1 MultipleObjectsReturned
-        obj = Course.objects.filter(slug=slug) # []
+        obj = Course.objects.filter(slug=slug)
         if obj.exists():
-            return obj.first() # first instance of list
+            return obj.first()
         raise Http404
-        # try:
-        #     obj = Course.objects.get(slug=slug)
-        # except Course.MultipleObjectsReturned:
-        #     qs = Course.objects.filter(slug=slug) # []
-        #     if qs.exists():
-        #         obj = qs.first()
-        # except:
-        #     raise Http404
-        # return obj
 
 
 class CourseListView(ListView):
@@ -77,8 +67,22 @@ class CourseUpdateView(StaffMemberRequiredMixin, UpdateView):
         obj.save()
         return super(CourseUpdateView, self).form_valid(form)
 
+    def get_object(self):
+        slug = self.kwargs.get("slug")
+        obj = Course.objects.filter(slug=slug)
+        if obj.exists():
+            return obj.first()
+        raise Http404
+
 
 
 class CourseDeleteView(StaffMemberRequiredMixin, DeleteView):
     queryset = Course.objects.all()
     success_url = '/videos/'
+
+    def get_object(self):
+        slug = self.kwargs.get("slug")
+        obj = Course.objects.filter(slug=slug)
+        if obj.exists():
+            return obj.first()
+        raise Http404
