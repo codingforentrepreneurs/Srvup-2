@@ -13,7 +13,7 @@ from django.views.generic import (
 #from .forms import VideoForm
 from videos.mixins import MemberRequiredMixin, StaffMemberRequiredMixin
 from .forms import CourseForm
-from .models import Course
+from .models import Course, Lecture
 
 
 class CourseCreateView(StaffMemberRequiredMixin, CreateView):
@@ -27,6 +27,13 @@ class CourseCreateView(StaffMemberRequiredMixin, CreateView):
         return super(CourseCreateView, self).form_valid(form)
 
 
+
+class LectureDetailView(MemberRequiredMixin, DetailView):
+    def get_object(self):
+        course_slug = self.kwargs.get("cslug")
+        lecture_slug = self.kwargs.get('lslug')
+        obj = get_object_or_404(Lecture, course__slug=course_slug, slug=lecture_slug)
+        return obj
 
 
 class CourseDetailView(MemberRequiredMixin, DetailView):

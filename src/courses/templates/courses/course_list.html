@@ -13,7 +13,7 @@
         {% endif %}
             <ul>
             {% for item in object_list %}
-                <li><a href='{{ item.get_absolute_url }}'>{{ item.title }}</a></li>
+                <li><a href='{{ item.get_absolute_url }}'>{{ item.title }}</a> <small>{{ item.lecture_set.count }} lectures</small></li>
             
                 {% empty %}
                 <li>No item found</li>
