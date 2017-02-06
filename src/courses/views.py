@@ -39,6 +39,15 @@ class CourseDetailView(MemberRequiredMixin, DetailView):
         if obj.exists():
             return obj.first() # first instance of list
         raise Http404
+        # try:
+        #     obj = Course.objects.get(slug=slug)
+        # except Course.MultipleObjectsReturned:
+        #     qs = Course.objects.filter(slug=slug) # []
+        #     if qs.exists():
+        #         obj = qs.first()
+        # except:
+        #     raise Http404
+        # return obj
 
 
 class CourseListView(ListView):
