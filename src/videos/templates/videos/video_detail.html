@@ -4,6 +4,8 @@
 
 
 {% block content %}
+<div class='row'>
+    <div class='col-sm-8 col-sm-offset-2'>
 {% include 'videos/snippets/video-search-form.html' with request=request %}
 
 
@@ -14,4 +16,6 @@
     {{ object.embed_code|safe }}
     {{ object.updated }}
     {{ object.id }}
+</div>
+</div>
 {% endblock content %}

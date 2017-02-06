@@ -4,6 +4,8 @@
 
 
 {% block content %}
+<div class='row'>
+    <div class='col-sm-8 col-sm-offset-2'>
     <h1>Hi</h1>
     {% include 'videos/snippets/video-search-form.html' with request=request %}
 
@@ -18,4 +20,6 @@
             <li>No item found</li>
         {% endfor %}
     </ul>
+    </div>
+    </div>
 {% endblock content %}

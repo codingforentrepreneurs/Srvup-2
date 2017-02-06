@@ -4,9 +4,13 @@
 
 
 {% block content %}
+<div class='row'>
+    <div class='col-sm-8 col-sm-offset-2'>
     <form method='POST' action=''>{% csrf_token %}
         {{ form.as_p }}
         <input type='submit' value='Save' class='btn btn-default' />
     </form>
+    </div>
+    </div>
 
 {% endblock content %}
