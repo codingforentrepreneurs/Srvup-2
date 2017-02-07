@@ -11,6 +11,9 @@
     {% for item in object_list %}
         <a href="{{ item.get_absolute_url }}" class="list-group-item">
                 {{ item.title }}
+                {% if item.primary_category.all.exists %}
+                <span class="badge">{{ item.primary_category.all.count }} Course{% if item.primary_category.all.count > 1 %}s{% endif %}</span>
+                {% endif %}
         </a>
         {% if forloop.counter|divisibleby:5 %}
                 </div></div><div class="col-sm-3"><div class="list-group">

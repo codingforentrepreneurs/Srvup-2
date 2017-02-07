@@ -16,9 +16,11 @@ class CategoryManager(models.Manager):
         return CategoryQuerySet(self.model, using=self._db)
 
     def all(self):
-        return self.get_queryset().all().active()
+        return self.get_queryset().all().active().prefetch_related('primary_category')
 
-
+        # qs = Category.objects.all()
+        # obj = qs.first()
+        # courses = obj.course_set.all() # models unleashed
 
 class Category(models.Model):
     title           = models.CharField(max_length=120)
