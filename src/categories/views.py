@@ -12,7 +12,7 @@ from .models import Category
 
 
 class CategoryListView(ListView):
-    queryset = Category.objects.all()
+    queryset = Category.objects.all().order_by('title')
 
 
 class CategoryDetailView(DetailView):
