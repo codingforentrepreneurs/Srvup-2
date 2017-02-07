@@ -6,27 +6,24 @@
 {% block content %}
 <div class='row'>
     <div class='col-sm-6 col-sm-offset-3'>
-        <h1>Hi</h1>
+        <h1>Courses</h1>
 
         {% if request.GET.q %}
             <p>You searched for <b>{{ request.GET.q }}</b></p>
         {% endif %}
-            <ul>
+            <div class='row'>
             {% for item in object_list %}
-                <li>
-                    <a href='{{ item.get_absolute_url }}'>{{ item.title }}</a> <small>{{ item.lecture_set.count }} lectures</small> |
-                    {% if item.is_owner %}
-                        Owned
-                        {% else %}
-                        <a href='{{ item.get_purchase_url }}'>Purchase {{ item.display_price }}</a>
-                        
-                    {% endif %}
-                </li>
-            
+                <div class='col-sm-4'>
+                {% include 'courses/snippets/course_thumbnail_display.html' with course=item %}
+                </div>
+                {% cycle '' '' '</div></div><div class="row"><div class="col-sm-4">' %}
+
+                
                 {% empty %}
-                <li>No item found</li>
+                <p class='lead'>No item found</p>
             {% endfor %}
-        </ul>
+        </div>
+    
     </div>
 </div>
 {% endblock content %}
