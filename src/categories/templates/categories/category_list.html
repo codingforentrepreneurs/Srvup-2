@@ -11,8 +11,14 @@
     {% for item in object_list %}
         <a href="{{ item.get_absolute_url }}" class="list-group-item">
                 {{ item.title }}
+
+                {% if item.courses_length > 0 %}
+                <span class="badge">{{ item.courses_length }} Course{% if courses_length > 1 %}s{% endif %}</span>
+                {% endif %}
+
+
                 {% if item.primary_category.all.exists %}
-                <span class="badge">{{ item.primary_category.all.count }} Course{% if item.primary_category.all.count > 1 %}s{% endif %}</span>
+                <span class="badge">{{ item.primary_category.all.count }} Featured</span>
                 {% endif %}
         </a>
         {% if forloop.counter|divisibleby:5 %}

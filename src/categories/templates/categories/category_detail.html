@@ -3,9 +3,12 @@
 
 {% block content %}
 <div class='row'>
-<div class='col-sm-12'>
-<h1>{{ object.title }}</h1>
-</div>
+    <div class='col-sm-12'>
+        <h1>{{ object.title }}</h1>
+    </div>
+
+    {{ object.primary_category.all }}
+    {{ object.secondary_category.all }}
 
 </div>
 

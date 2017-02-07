@@ -1,5 +1,6 @@
 from django.core.urlresolvers import reverse
 from django.db import models
+from django.db.models import Count
 from django.db.models.signals import pre_save
 # Create your models here.
 
@@ -16,7 +17,10 @@ class CategoryManager(models.Manager):
         return CategoryQuerySet(self.model, using=self._db)
 
     def all(self):
-        return self.get_queryset().all().active().prefetch_related('primary_category')
+        return self.get_queryset().all(
+            ).active().annotate(
+                courses_length= Count('primary_category') + Count("secondary_category")
+            ).prefetch_related('primary_category', 'secondary_category')
 
         # qs = Category.objects.all()
         # obj = qs.first()
