@@ -64,11 +64,21 @@ class CourseManager(models.Manager):
         #return super(CourseManager, self).all()
 
 
+def handle_upload(instance, filename):
+    if instance.slug:
+        return "%s/images/%s" %(instance.slug, filename)
+    return "unknown/images/%s" %(filename)
 
 class Course(models.Model):
     user            = models.ForeignKey(settings.AUTH_USER_MODEL)
     title           = models.CharField(max_length=120)
     slug            = models.SlugField(blank=True) # unique = False
+    image           = models.ImageField(upload_to=handle_upload, 
+                            height_field='image_height', 
+                            width_field='image_width',
+                            blank=True, null=True)
+    image_height    = models.IntegerField(blank=True, null=True)
+    image_width     = models.IntegerField(blank=True, null=True)
     # category        = models.CharField(max_length=120, choices=POS_CHOICES, default='main')
     category        = models.ForeignKey(Category, related_name='primary_category', null=True, blank=True)
     secondary       = models.ManyToManyField(Category, related_name='secondary_category', blank=True)

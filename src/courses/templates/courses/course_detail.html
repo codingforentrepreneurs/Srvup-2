@@ -10,7 +10,9 @@
 
 {% include 'videos/snippets/video-search-form.html' with request=request %}
 
-
+    {% if object.image %}
+    <img src='{{ object.image.url }}' class='img-responsive'>
+    {% endif %}
 
     <h1>{{ object.title }}</h1>
 
