@@ -18,7 +18,8 @@
                     {% if item.is_owner %}
                         Owned
                         {% else %}
-                        {{ item.display_price }}
+                        <a href='{{ item.get_purchase_url }}'>Purchase {{ item.display_price }}</a>
+                        
                     {% endif %}
                 </li>
             

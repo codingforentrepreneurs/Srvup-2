@@ -17,6 +17,7 @@
        
     {{ object.description|linebreaks }}
      {% if not object.is_owner %}
+     <a href='{{ object.get_purchase_url }}'>Purchase</a>
     {{ object.display_price }}
     {% endif %}
 

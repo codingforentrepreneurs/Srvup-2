@@ -1,14 +1,15 @@
 import random
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Prefetch
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import Http404
 from django.views.generic import (
         CreateView,
         DetailView,
         ListView,
         UpdateView,
-        DeleteView
+        DeleteView,
+        RedirectView
     )
 
 #from .forms import VideoForm
@@ -41,10 +42,28 @@ class CourseDetailView(MemberRequiredMixin, DetailView):
     #queryset = Course.objects.all()
     def get_object(self):
         slug = self.kwargs.get("slug")
-        obj = Course.objects.filter(slug=slug).owned(self.request.user)
-        if obj.exists():
-            return obj.first()
+        qs = Course.objects.filter(slug=slug).owned(self.request.user)
+        if qs.exists():
+            return qs.first()
         raise Http404
+
+
+class CoursePurchaseView(LoginRequiredMixin, RedirectView):
+    permanent = False
+
+    def get_redirect_url(self, slug=None):
+        qs = Course.objects.filter(slug=slug).owned(self.request.user)
+        if qs.exists():
+            user = self.request.user
+            if user.is_authenticated():
+                my_courses = user.mycourses
+                # run transaction
+                # if transaction successful:
+                my_courses.courses.add(qs.first())
+                return qs.first().get_absolute_url()
+            return qs.first().get_absolute_url()
+        return "/courses/"
+
 
 
 class CourseListView(ListView):
