@@ -10,7 +10,7 @@ Srvup 2 Roadmap
 
 2. Courses / Series 
     - price? 
-    - my courses (the things i own)
+    - my courses (the things i own) -- one click
 
 
 3. Categories / Tags
@@ -24,6 +24,3 @@ Srvup 2 Roadmap
     - Recommendations based on habits
 
 
-Lori
-619-757-8147
-14 and 28
