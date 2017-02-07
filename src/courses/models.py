@@ -10,10 +10,18 @@ from videos.models import Video
 from .fields import PositionField
 from .utils import create_slug
 
+
+POS_CHOICES = (
+    ('main', 'Main'),
+    ('sec', 'Secondary'),
+)
+
 class Course(models.Model):
     user            = models.ForeignKey(settings.AUTH_USER_MODEL)
     title           = models.CharField(max_length=120)
     slug            = models.SlugField(blank=True) # unique = False
+    category        = models.CharField(max_length=120, choices=POS_CHOICES, default='main')
+    order           = PositionField(collection='category')
     description     = models.TextField()
     price           = models.DecimalField(decimal_places=2, max_digits=100)
     updated         = models.DateTimeField(auto_now=True)
