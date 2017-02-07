@@ -2,7 +2,12 @@ from django.contrib import admin
 
 # Register your models here.
 from .forms import LectureAdminForm
-from .models import Course, Lecture
+from .models import Course, Lecture, MyCourses
+
+
+admin.site.register(MyCourses)
+
+
 
 class LectureInline(admin.TabularInline):
     model = Lecture

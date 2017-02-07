@@ -13,7 +13,15 @@
         {% endif %}
             <ul>
             {% for item in object_list %}
-                <li><a href='{{ item.get_absolute_url }}'>{{ item.title }}</a> <small>{{ item.lecture_set.count }} lectures</small> | {{ item.display_price }}</li>
+                <li>
+                    <a href='{{ item.get_absolute_url }}'>{{ item.title }}</a> <small>{{ item.lecture_set.count }} lectures</small> |
+                   
+                    {% if item in request.user.mycourses.courses.all %}
+                        Owned
+                        {% else %}
+                        {{ item.display_price }}
+                    {% endif %}
+                </li>
             
                 {% empty %}
                 <li>No item found</li>
