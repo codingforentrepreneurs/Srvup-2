@@ -47,12 +47,14 @@ class CourseQuerySet(models.query.QuerySet):
         return self.filter(active=True)
 
     def owned(self, user):
-        return self.prefetch_related(
+        if user.is_authenticated():
+            return self.prefetch_related(
                     Prefetch('owned',
                             queryset=MyCourses.objects.filter(user=user),
                             to_attr='is_owner'
                     )
                 )
+        return self
 
 
 class CourseManager(models.Manager):
