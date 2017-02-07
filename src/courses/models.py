@@ -7,6 +7,7 @@ from django.utils.text import slugify
 
 from videos.models import Video
 
+from .fields import PositionField
 from .utils import create_slug
 
 class Course(models.Model):
@@ -27,12 +28,13 @@ class Course(models.Model):
 
 
 
-
+# limit_choices_to={'lecture__isnull': True, 'title__icontains': "Something"}
 
 class Lecture(models.Model):
     course          = models.ForeignKey(Course, on_delete=models.SET_NULL, null=True)
     video           = models.ForeignKey(Video, on_delete=models.SET_NULL, null=True)
     title           = models.CharField(max_length=120)
+    order           = PositionField(collection='course')
     slug            = models.SlugField(blank=True) # unique = False
     description     = models.TextField(blank=True)
     updated         = models.DateTimeField(auto_now=True)
@@ -43,6 +45,7 @@ class Lecture(models.Model):
 
     class Meta:
         unique_together = (('slug', 'course'),)
+        ordering = ['order', 'title'] # 0 - 100 , a-z
 
     def get_absolute_url(self):
         return reverse("courses:lecture-detail", 
