@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load render_video %}
 
 {% block title %}Videos | {{ block.super }}{% endblock title %}
 
@@ -15,8 +16,7 @@
     <h1>Hi</h1>
 
     {{ object.title }}<br/>
-    
-    {{ object.video.embed_code|safe }}
+    {% render_video object.video %}
     {{ object.updated }}
     {{ object.id }}
 </div>

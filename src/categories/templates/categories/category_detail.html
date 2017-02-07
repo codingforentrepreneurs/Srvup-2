@@ -1,10 +1,13 @@
 {% extends "base.html" %}
-
+{% load render_video %}
 
 {% block content %}
 <div class='row'>
     <div class='col-sm-12'>
         <h1>{{ object.title }}</h1>
+        <div class='col-sm-6 col-sm-offset-6'>
+            {% render_video object.video %}
+        </div>
     </div>
 
     {{ object.primary_category.all }}
