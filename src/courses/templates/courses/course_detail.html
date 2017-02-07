@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+ {% load humanize %}
 {% block title %}Videos | {{ block.super }}{% endblock title %}
 
 
@@ -12,12 +12,16 @@
 
 
 
-    <h1>Hi</h1>
+    <h1>{{ object.title }}</h1>
 
-    {{ object.title }}
-    {{ object.embed_code|safe }}
-    {{ object.updated }}
-    {{ object.id }}
+    
+    {{ object.description|linebreaks }}
+
+    {{ object.display_price }}
+
+
+
+
     <p>
      <ul>
             {% for item in object.lecture_set.all %}

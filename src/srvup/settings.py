@@ -34,9 +34,11 @@ INSTALLED_APPS = [
     'django.contrib.admin', # a place to manage data
     'django.contrib.auth', # users
     'django.contrib.contenttypes',
+    'django.contrib.humanize',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
 
     'courses',
     'videos',

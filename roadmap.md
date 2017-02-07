@@ -11,7 +11,6 @@ Srvup 2 Roadmap
 2. Courses / Series 
     - price? 
     - my courses (the things i own)
-    - Not cover billing
 
 
 3. Categories / Tags
