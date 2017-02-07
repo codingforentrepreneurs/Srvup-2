@@ -14,10 +14,11 @@
 
     <h1>{{ object.title }}</h1>
 
-    
+       
     {{ object.description|linebreaks }}
-
+     {% if not object.is_owner %}
     {{ object.display_price }}
+    {% endif %}
 
 
 
