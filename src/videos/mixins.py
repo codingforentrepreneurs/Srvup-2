@@ -9,8 +9,11 @@ class MemberRequiredMixin(object):
         user = request.user
         if request.user.is_staff:
             return super(MemberRequiredMixin, self).dispatch(request, *args, **kwargs)
-        if obj.free:
-            return super(MemberRequiredMixin, self).dispatch(request, *args, **kwargs)
+        try:
+            if obj.free:
+                return super(MemberRequiredMixin, self).dispatch(request, *args, **kwargs)
+        except:
+            pass
         return HttpResponse("Oops not free")
 
 

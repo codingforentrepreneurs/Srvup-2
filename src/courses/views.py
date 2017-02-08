@@ -38,7 +38,7 @@ class LectureDetailView(MemberRequiredMixin, DetailView):
         return obj
 
 
-class CourseDetailView(MemberRequiredMixin, DetailView):
+class CourseDetailView(DetailView):
     #queryset = Course.objects.all()
     def get_object(self):
         slug = self.kwargs.get("slug")

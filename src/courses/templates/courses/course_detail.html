@@ -9,7 +9,8 @@
 
 
 {% include 'videos/snippets/video-search-form.html' with request=request %}
-
+     <div class='row'>
+    <div class='col-sm-12'>
     {% if object.image %}
     <img src='{{ object.image.url }}' class='img-responsive'>
     {% endif %}
@@ -22,22 +23,24 @@
      <a href='{{ object.get_purchase_url }}'>Purchase</a>
     {{ object.display_price }}
     {% endif %}
+    </div>
 
+    </div>
 
+    <div class='row'>
+    <div class='col-sm-12'>
+    <h3>Lectures</h3>
+    {% for item in object.lecture_set.all %}
+    <div class="list-group">
+        <a class="list-group-item lead" {% if object.is_owner %} href='{{ item.get_absolute_url }}' {% endif %}>{{ item.title }}</a>
+    
+    {% empty %}
+        <p class='lead'>Lectures coming soon</p>
+    </div>
+    {% endfor %}
+    </div>
+    </div>
 
-
-    <p>
-     <ul>
-            {% for item in object.lecture_set.all %}
-                <li>{{ item.order }} <a href='{{ item.get_absolute_url }}'>{{ item.title }}</a></li>
-            
-                {% empty %}
-                <li>No lectures found</li>
-            {% endfor %}
-        </ul>
-
-
-    </p>
 </div>
 </div>
 {% endblock content %}

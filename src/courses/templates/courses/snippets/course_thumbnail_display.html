@@ -1,6 +1,6 @@
 <div class="thumbnail">
     {% if course.image %}
-  <img src="{{ course.image.url }}" class='img-responsive'>
+  <a href="{{ course.get_absolute_url }}"><img src="{{ course.image.url }}" class='img-responsive'></a>
   {% endif %}
   <div class="caption">
     <h3>{{ course.title }}</h3>
