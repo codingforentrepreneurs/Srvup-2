@@ -21,7 +21,7 @@ class CategoryManager(models.Manager):
     def all(self):
         return self.get_queryset().all(
             ).active().annotate(
-                courses_length= Count('primary_category') + Count("secondary_category")
+                courses_length= Count("secondary_category", distinct=True)
             ).prefetch_related('primary_category', 'secondary_category')
 
         # qs = Category.objects.all()

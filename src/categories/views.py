@@ -23,6 +23,7 @@ class CategoryDetailView(DetailView):
         obj = context.get("object")
         user = self.request.user
         qs1 = obj.primary_category.all().owned(self.request.user)
+        context['featured_courses'] = qs1[:6]
         qs2 = obj.secondary_category.all().owned(self.request.user)
         qs = (qs1 | qs2).distinct()
         context['courses'] = qs

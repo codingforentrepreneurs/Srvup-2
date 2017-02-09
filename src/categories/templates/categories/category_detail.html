@@ -2,24 +2,36 @@
 {% load render_video %}
 
 {% block content %}
+<div class='container'>
 <div class='row'>
     <div class='col-sm-12'>
-        <h1>{{ object.title }}</h1>
+        <h1>{{ object.title }} {% if courses.count > 1 %}<small>{{ courses.count }} Courses</small>{% endif %}</h1>
         <div class='col-sm-6 col-sm-offset-6'>
             {% render_video object.video %}
         </div>
     </div>
 
+
+    <div class='row'>
+    {% for item in featured_courses %}
+        <div class='col-sm-2'>
+        {% include 'courses/snippets/course_featured_display.html' with course=item %}
+        </div>
+    {% endfor %}
+    </div>
+
+
+
     <div class='row'>
     {% for item in courses %}
-        <div class='col-sm-4'>
+        <div class='col-md-4 col-sm-6'>
         {% include 'courses/snippets/course_thumbnail_display.html' with course=item %}
         </div>
-        {% cycle '' '' '</div></div><div class="row"><div class="col-sm-4">' %}
+        {% cycle '' '' '</div><div class="row">' %}
     {% endfor %}
     </div>
 
 
 </div>
-
+</div>
 {% endblock %}

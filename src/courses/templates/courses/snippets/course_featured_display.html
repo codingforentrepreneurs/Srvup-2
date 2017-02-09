@@ -1,0 +1,21 @@
+<div class="thumbnail">
+    {% if course.image %}
+  <a href="{{ course.get_absolute_url }}"><img src="{{ course.image.url }}" class='img-responsive'></a>
+  {% endif %}
+  <div class="caption">
+    <h3>{{ course.title }}</h3>
+
+    <p>
+    {% if not item.is_owner %}
+     
+    <a href='{{ item.get_purchase_url }}' class="btn btn-warning">Purchase {{ item.display_price }}</a>
+        {% else %}
+        <p><a href="{{ course.get_absolute_url }}" class="btn btn-primary" role="button">View</a></p>
+    {% endif %}
+    </p>
+    
+
+  </div>
+</div>
+
+<!-- style='width:200px; height:200px; overflow: hidden;' -->
