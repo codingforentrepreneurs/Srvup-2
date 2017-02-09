@@ -13,4 +13,19 @@
 </div>
 </div>
 
+<div class='row'>
+<div class='col-sm-6 col-sm-offset-3'>
+<h2>Results</h2>
+{% for item in qs %}
+    <a href='{{ item.get_absolute_url }}'>{{ item.id }}- {{ item.title }}</a><br/>
+{% endfor %}
+
+{% for item in c_qs %}
+    <a href='{{ item.get_absolute_url }}'>{{ item.id }}- {{ item.title }}</a><br/>
+{% endfor %}
+
+</div>
+
+</div>
+
 {% endblock %}
