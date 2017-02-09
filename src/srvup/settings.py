@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     'categories',
     'courses',
+    'search',
     'videos',
 ]
 
