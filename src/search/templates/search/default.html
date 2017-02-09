@@ -20,6 +20,10 @@
     <a href='{{ item.get_absolute_url }}'>{{ item.id }}- {{ item.title }}</a><br/>
 {% endfor %}
 
+{% for item in l_qs %}
+    <a href='{{ item.get_absolute_url }}'>{{ item.id }}- {{ item.title }}</a><br/>
+{% endfor %}
+
 {% for item in c_qs %}
     <a href='{{ item.get_absolute_url }}'>{{ item.id }}- {{ item.title }}</a><br/>
 {% endfor %}
