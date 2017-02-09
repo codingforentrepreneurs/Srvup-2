@@ -1,15 +1,12 @@
 {% extends "base.html" %}
-
+{% load search_form %}
 
 {% block content %}
 
 <div class='row'>
 <div class='col-sm-4 col-sm-offset-4'>
-<h1>Search</h1>
-<form method='GET' action='{% url "search:default" %}'>
-<input type='text' value='{{ request.GET.q }}' name='q' class='form-control' placeholder="Search..">
-<button  class='btn btn-default' type='submit' ><i class='fa fa-search'></i> Search</button>
-</form>
+<h1>Search {% if request.GET.q %}<small>Results for {{ request.GET.q }}</small>{% endif %}</h1>
+
 </div>
 </div>
 

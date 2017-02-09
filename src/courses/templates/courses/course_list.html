@@ -5,29 +5,12 @@
 
 {% block content %}
 
-{% if is_paginated %}
-        
-
-    
-
-    
-   
-
- 
-
-
-{% endif %}
-
-
-
 
 <div class='row'>
     <div class='col-sm-6 col-sm-offset-3'>
         <h1>Courses</h1>
 
-        {% if request.GET.q %}
-            <p>You searched for <b>{{ request.GET.q }}</b></p>
-        {% endif %}
+    
             <div class='row'>
             {% for item in object_list %}
                 <div class='col-md-4 col-sm-12'>
