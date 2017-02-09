@@ -1,6 +1,6 @@
 ![Srvup 2 logo](https://cfe2-static.s3-us-west-2.amazonaws.com/media/projects/srvup-2/images/share/srvup_2_share.png)
 
-# Srvup-2
+# Srvup 2 | Video Membership
 Learn step-by-step to create a video membership site like [CodingForEntrepreneurs.com](http://codingforentrepreneurs.com) using Django 1.10 and Bootstrap. 
 
 Video content is taking over all content on the web so it's time to build a system that allows you share videos with the world. Let's do this!
