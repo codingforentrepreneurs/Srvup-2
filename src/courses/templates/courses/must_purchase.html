@@ -10,14 +10,11 @@
 
 {% include 'videos/snippets/video-search-form.html' with request=request %}
      <div class='row'>
+     <h1>Please purchase to continue</h1>
     <div class='col-sm-12'>
-    {% if object.image %}
-    <img src='{{ object.image.url }}' class='img-responsive'>
-    {% endif %}
 
     <h1>{{ object.title }}</h1>
 
-       
     {{ object.description|linebreaks }}
      {% if not object.is_owner %}
      <a href='{{ object.get_purchase_url }}'>Purchase</a>
@@ -27,19 +24,7 @@
 
     </div>
 
-    <div class='row'>
-    <div class='col-sm-12'>
-    <h3>Lectures</h3>
-    {% for item in object.lecture_set.all %}
-    <div class="list-group">
-        <a class="list-group-item lead" {% if object.is_owner %} href='{{ item.get_absolute_url }}' {% endif %}>{{ item.title }}</a>
-    
-    {% empty %}
-        <p class='lead'>Lectures coming soon</p>
-    </div>
-    {% endfor %}
-    </div>
-    </div>
+
 
 </div>
 </div>

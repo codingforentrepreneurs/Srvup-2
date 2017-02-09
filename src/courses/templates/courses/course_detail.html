@@ -32,7 +32,7 @@
     <h3>Lectures</h3>
     {% for item in object.lecture_set.all %}
     <div class="list-group">
-        <a class="list-group-item lead" {% if object.is_owner %} href='{{ item.get_absolute_url }}' {% endif %}>{{ item.title }}</a>
+        <a class="list-group-item lead"  href='{{ item.get_absolute_url }}'>{{ item.title }} {% if item.free %}<small>Free Preview</small>{% endif %}</a>
     
     {% empty %}
         <p class='lead'>Lectures coming soon</p>

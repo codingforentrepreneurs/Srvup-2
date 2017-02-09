@@ -124,6 +124,7 @@ class Lecture(models.Model):
     title           = models.CharField(max_length=120)
     order           = PositionField(collection='course')
     slug            = models.SlugField(blank=True) # unique = False
+    free            = models.BooleanField(default=False)
     description     = models.TextField(blank=True)
     updated         = models.DateTimeField(auto_now=True)
     timestamp       = models.DateTimeField(auto_now_add=True)
