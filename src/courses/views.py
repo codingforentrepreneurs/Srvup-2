@@ -9,7 +9,8 @@ from django.views.generic import (
         ListView,
         UpdateView,
         DeleteView,
-        RedirectView
+        RedirectView,
+        View
     )
 
 #from .forms import VideoForm
@@ -30,19 +31,37 @@ class CourseCreateView(StaffMemberRequiredMixin, CreateView):
 
 
 
-class LectureDetailView(MemberRequiredMixin, DetailView):
-    def get_object(self):
-        course_slug = self.kwargs.get("cslug")
-        lecture_slug = self.kwargs.get('lslug')
-        obj = get_object_or_404(Lecture, course__slug=course_slug, slug=lecture_slug)
-        return obj
+class LectureDetailView(View):
+    def get(self, request, cslug=None, lslug=None, *args, **kwargs):
+        obj = None
+        qs = Course.objects.filter(slug=cslug).lectures().owned(request.user)
+        if not qs.exists():
+            raise Http404
+
+        course_ = qs.first()
+        if not course_.is_owner:
+            return render(request, "courses/must_purchase.html", {"object": course_}) 
+
+        lectures_qs = course_.lecture_set.filter(slug=lslug) # Lecture.objects.filter(course=course_)
+        if lectures_qs.exists():
+            obj = lectures_qs.first()
+        context = {
+            "object": obj,
+        }
+        return render(request, "courses/lecture_detail.html", context)
+
+    # def get_object(self):
+    #     course_slug = self.kwargs.get("cslug")
+    #     lecture_slug = self.kwargs.get('lslug')
+    #     obj = get_object_or_404(Lecture, course__slug=course_slug, slug=lecture_slug)
+    #     return obj
 
 
 class CourseDetailView(DetailView):
     #queryset = Course.objects.all()
     def get_object(self):
         slug = self.kwargs.get("slug")
-        qs = Course.objects.filter(slug=slug).owned(self.request.user)
+        qs = Course.objects.filter(slug=slug).lectures().owned(self.request.user)
         if qs.exists():
             return qs.first()
         raise Http404
