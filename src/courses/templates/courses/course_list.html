@@ -4,6 +4,23 @@
 
 
 {% block content %}
+
+{% if is_paginated %}
+        
+
+    
+
+    
+   
+
+ 
+
+
+{% endif %}
+
+
+
+
 <div class='row'>
     <div class='col-sm-6 col-sm-offset-3'>
         <h1>Courses</h1>
@@ -29,6 +46,19 @@
             {% endfor %}
         </div>
     
+
+    {% if page_obj.has_previous %}
+        <a href='{% url "courses:list" %}?page={{ page_obj.previous_page_number }}'>Previous</a>
+    {% endif %}
+
+     Page {{ page_obj.number }} of {{ paginator.num_pages }}
+
+    {% if page_obj.has_next %}
+           <a href='{% url "courses:list" %}?page={{ page_obj.next_page_number }}'>Next</a>
+    {% endif %}
+
+
+
     </div>
 </div>
 {% endblock content %}

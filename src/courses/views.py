@@ -84,6 +84,13 @@ class CoursePurchaseView(LoginRequiredMixin, RedirectView):
 
 
 class CourseListView(ListView):
+    paginate_by = 12
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(CourseListView, self).get_context_data(*args, **kwargs)
+        print(dir(context.get('page_obj')))
+        return context
+
     def get_queryset(self):
         request = self.request
         qs = Course.objects.all()
