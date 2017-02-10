@@ -136,7 +136,13 @@ Watch it [here](https://www.codingforentrepreneurs.com/projects/srvup-2/)
 
 [62 - Category Display Counts](../../tree/6931e31bc22a839b8968d6174ec52bbeed81bf8f)
 
+[63 - Search App](../../tree/4cfabb4048b4b8c513d977365061ac9b8775cf8a)
 
+[64 - Basic Search Results](../../tree/c6a42b0b97b26d7af5b968e07cf4a764965a2bda)
+
+[65 - Complex Lookups with Q](../../tree/cd8c7bcc58c0832d7a49b9bcee9108e9b3a3270f)
+
+[66 - Search Template Tag](../../tree/aaf65138e36c8d3f87b5d8de337866c67b5ce299)
 
 
 
