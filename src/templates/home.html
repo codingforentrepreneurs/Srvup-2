@@ -1,10 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>Hello, {{ name }} {{ random_number }}!</h1>
-  {% if request.user.is_authenticated %}
-    Hi user
-  {% endif %}
+
+
+   <div class='row'>
+    {% for item in qs %}
+        <div class='col-sm-4'>
+        {% include 'courses/snippets/course_thumbnail_display.html' with course=item %}
+        </div>
+        {% cycle '' '' '</div><div class="row">' %}
+    {% endfor %}
+    </div>
+
+
 {% endblock content %}
 
 
