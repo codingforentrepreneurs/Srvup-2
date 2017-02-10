@@ -14,6 +14,9 @@ from django.views.generic import (
     )
 
 #from .forms import VideoForm
+from analytics.models import CourseViewEvent
+
+
 from videos.mixins import MemberRequiredMixin, StaffMemberRequiredMixin
 from .forms import CourseForm
 from .models import Course, Lecture, MyCourses
@@ -38,6 +41,12 @@ class LectureDetailView(View):
         if not qs.exists():
             raise Http404
         course_ = qs.first()
+        if request.user.is_authenticated():
+            view_event, created = CourseViewEvent.objects.get_or_create(user=request.user, course=course_)
+            if view_event:
+                view_event.views += 1
+                view_event.save()
+
         lectures_qs = course_.lecture_set.filter(slug=lslug)
         if not lectures_qs.exists():
             raise Http404
@@ -61,7 +70,13 @@ class CourseDetailView(DetailView):
         slug = self.kwargs.get("slug")
         qs = Course.objects.filter(slug=slug).lectures().owned(self.request.user)
         if qs.exists():
-            return qs.first()
+            obj = qs.first()
+            if self.request.user.is_authenticated():
+                view_event, created = CourseViewEvent.objects.get_or_create(user=self.request.user, course=obj)
+                if view_event:
+                    view_event.views += 1
+                    view_event.save()
+            return obj
         raise Http404
 
 

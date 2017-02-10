@@ -3,6 +3,27 @@
 {% block content %}
 
 
+<div class='row'>
+<div class='col-sm-12'>
+<h1>Recommended</h1>
+</div>
+    {% for item in rec_courses %}
+        
+        <div class='col-sm-2'>
+        {% include 'courses/snippets/course_featured_display.html' with course=item %}
+        </div>
+        {% if forloop.counter|divisibleby:6 %}
+                </div><div class="row">
+        
+        {% endif %}
+    {% endfor %}
+<div class='col-sm-12'><hr/>
+</div>
+
+</div>
+
+
+
    <div class='row'>
     {% for item in qs %}
         <div class='col-sm-4'>
