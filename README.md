@@ -144,6 +144,13 @@ Watch it [here](https://www.codingforentrepreneurs.com/projects/srvup-2/)
 
 [66 - Search Template Tag](../../tree/aaf65138e36c8d3f87b5d8de337866c67b5ce299)
 
+[67 - Improve Navigation](../../tree/3bf170bfe7e7a1ea4772452b26c9ecb4fd43f4eb)
+
+[68 - Style Paginatinor](../../tree/78b404b137f1e08d63dbd494b2c1d185241e8528)
+
+[69 - Featured Category on Homepage](../../tree/8be0428d0c10cca2e4d942475b0f0e7da726ce37)
+
+[70 Analytics App](../../tree/f213112e554bc865afb4721636d0856b0a3d0765)
 
 
 
