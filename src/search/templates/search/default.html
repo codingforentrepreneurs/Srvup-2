@@ -5,14 +5,16 @@
 
 <div class='row'>
 <div class='col-sm-4 col-sm-offset-4'>
-<h1>Search {% if request.GET.q %}<small>Results for {{ request.GET.q }}</small>{% endif %}</h1>
+<h1>Search</h1>
+{% search_form request False %}
 
 </div>
 </div>
-
+{% if request.GET.q %}
 <div class='row'>
 <div class='col-sm-6 col-sm-offset-3'>
-<h2>Results</h2>
+
+<h2>Results for {{ request.GET.q }}</h2>
 {% for item in qs %}
     <a href='{{ item.get_absolute_url }}'>{{ item.id }}- {{ item.title }}</a><br/>
 {% endfor %}
@@ -28,5 +30,6 @@
 </div>
 
 </div>
+{% endif %}
 
 {% endblock %}

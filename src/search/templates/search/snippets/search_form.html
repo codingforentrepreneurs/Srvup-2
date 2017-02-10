@@ -1,6 +1,16 @@
-
+{% if not navbar %}
 <form method='GET' action='{% url "search:default" %}'>
 <input type='text' value='{{ request.GET.q }}' name='q' class='form-control' placeholder="Search..">
 <!-- <input type='hidden' value='{{ request.GET.page }}' name='page' class='form-control'> -->
 <button  class='btn btn-default' type='submit' ><i class='fa fa-search'></i> Search</button>
 </form>
+
+{% else %}
+<form class="navbar-form navbar-left" method='GET' action='{% url "search:default" %}'>
+<div class="form-group">
+  <input type='text' value='{{ request.GET.q }}' name='q' class='form-control' placeholder="Search..">
+</div>
+<button  class='btn btn-default' type='submit' ><i class='fa fa-search'></i> Search</button>
+</form>
+{% endif %}
+

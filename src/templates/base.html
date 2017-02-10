@@ -11,10 +11,9 @@
     {% include 'defaults/head.html' %}
   </head>
   <body>
-    <div class='container'>
-    {% search_form request %}
-    </div>
+    
     <div class='container-fluid'>
+    {% include 'navbar.html' %}
       {% block content %}
       {% endblock content %}
     </div>

@@ -4,6 +4,11 @@
 
 
 {% block content %}
+<ol class="breadcrumb">
+  <li><a href="{% url 'courses:list' %}">Courses</a></li>
+  <li class="active">{{ object.title }}</li>
+</ol>
+
 <div class='row'>
     <div class='col-sm-6 col-sm-offset-3'>
 

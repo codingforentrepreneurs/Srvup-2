@@ -5,20 +5,20 @@
 
 
 {% block content %}
+<ol class="breadcrumb">
+  <li><a href="{% url 'courses:list' %}">Courses</a></li>
+  <li><a href="{{ object.course.get_absolute_url }}">{{ object.course.title }}</a></li>
+  <li class="active">{{ object.title }}</li>
+</ol>
 <div class='row'>
     <div class='col-sm-6 col-sm-offset-3'>
+    <h1>{{ object.title }}</h1>
 
-
-{% include 'videos/snippets/video-search-form.html' with request=request %}
-
-
-
-    <h1>Hi</h1>
-
-    {{ object.title }}<br/>
     {% render_video object.video %}
-    {{ object.updated }}
-    {{ object.id }}
+    
+     <p>{{ object.updated }}</p>
+    <p>{{ object.description }}</p>
+   
 </div>
 </div>
 {% endblock content %}
